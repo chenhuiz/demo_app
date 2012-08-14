@@ -1,4 +1,9 @@
 class WelcomeController < ApplicationController
-  def index
-  end
+	before_filter :authenticate_user!, :except => [:index]
+	def index
+	end
+
+	def dashboard
+		@status = "hi"
+	end
 end

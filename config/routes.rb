@@ -3,6 +3,7 @@ DemoApp::Application.routes.draw do
   devise_for :users, :controller => {:registrations => 'registrations'}
 
   root :to => 'welcome#index'
+  match 'dashboard' => 'welcome#dashboard'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

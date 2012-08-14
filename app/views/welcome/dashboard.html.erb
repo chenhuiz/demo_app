@@ -1,0 +1,50 @@
+<% provide :title, "Dashboard" %>
+<h1>Dashboard</h1>
+<div class="row">
+  <div class="span2">
+	<ul class="nav nav-list">
+	  <li>
+	    <a href=<%= root_path %> >
+	      <i class="icon-home"></i>
+	      Home
+	    </a>
+	  </li>
+	  <li>
+	    <a href=<%= edit_user_registration_path %> >
+	      <i class="icon-cog"></i>
+	      Settings
+	    </a>
+	  </li>
+	</ul>
+  </div>
+
+  <div class="span4">
+  	<h2>hello</h2>
+  </div>
+
+  <div class="span6">
+  	<div class="tabbable"> <!-- Only required for left/right tabs -->
+	  <ul class="nav nav-tabs">
+	    <li class="active"><a href="#tab1" data-toggle="tab">Foursquare</a></li>
+	    <li><a href="#tab2" data-toggle="tab">Twitter</a></li>
+	    <li><a href="#tab3" data-toggle="tab">Facebook</a></li>
+	  </ul>
+	  <div class="tab-content">
+	    <div class="tab-pane active" id="tab1">
+	      <div class="btn-group">
+			  <a class="btn btn-success" href="#">
+			    <%= @status %>
+			  </a>
+			</div>
+	    </div>
+	    <div class="tab-pane" id="tab2">
+	      <p>Howdy, I'm in Section 2.</p>
+	    </div>
+	    <div class="tab-pane" id="tab3">
+	      <p>Howdy, I'm in Section 3.</p>
+	    </div>
+	  </div>
+	</div>
+  </div>
+
+</div>
