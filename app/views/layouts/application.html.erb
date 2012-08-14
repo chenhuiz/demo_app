@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DemoApp</title>
+  <%= favicon_link_tag %>
+  <title><%= yield :title %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 </head>
 <body>
-
-<%= yield %>
+<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner">
+      	<div class="container">
+      		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	        </a>
+	       	<div class="nav-collapse pull-right">
+	          <ul class="nav">
+	            <% if user_signed_in? %>
+	            	<li style="padding-top:9px;"> Signed in as <%= current_user.email %></li>
+	            	<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+	            	<li><%= link_to "Settings", edit_user_registration_path %></li>
+	            <% else %>
+	            	<li><%= link_to 'Sign up', new_user_registration_path %></li>
+	            	<li><%= link_to 'Sign in', new_user_session_path %></li>
+	            <% end %>
+	            <li><%= link_to 'Home', root_path %></li>
+	          </ul>
+	        </div>
+      	</div>
+      </div>
+</div>
+<div class="container">
+	<% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+  <%= yield %>
+</div>
 
 </body>
 </html>
