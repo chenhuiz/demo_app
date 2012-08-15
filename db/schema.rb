@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120813050451) do
+ActiveRecord::Schema.define(:version => 20120815014718) do
+
+  create_table "twitter_accounts", :force => true do |t|
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.integer  "user_id"
+    t.boolean  "active",               :default => false
+    t.text     "stream_url"
+    t.string   "oauth_token"
+    t.string   "oauth_token_secret"
+    t.string   "oauth_token_verifier"
+    t.text     "oauth_authorize_url"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

@@ -5,6 +5,10 @@ DemoApp::Application.routes.draw do
   root :to => 'welcome#index'
   match 'dashboard' => 'welcome#dashboard'
 
+  get "twitter/new"
+  get "twitter/callback"
+  get "twitter/deactivate"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

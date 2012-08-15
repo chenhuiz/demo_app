@@ -18,11 +18,23 @@
 	</ul>
   </div>
 
-  <div class="span4">
-  	<h2>hello</h2>
+  <div class="span6">
+  	<h2>Link your social media accounts in the right tab!</h2>
+  	<h2>After that you can post messages from this tab!</h2>
+  	<div class="span2">
+
+  	</div>
+  	<div class="span2">
+  		<% if !@twitter_not_link %>
+ 			<%= image_tag("twitter_64.png") %>
+  		<% end %>
+  	</div>
+  	<div class="span2">
+  		
+  	</div>
   </div>
 
-  <div class="span6">
+  <div class="span4">
   	<div class="tabbable"> <!-- Only required for left/right tabs -->
 	  <ul class="nav nav-tabs">
 	    <li class="active"><a href="#tab1" data-toggle="tab">Foursquare</a></li>
@@ -33,12 +45,15 @@
 	    <div class="tab-pane active" id="tab1">
 	      <div class="btn-group">
 			  <a class="btn btn-success" href="#">
-			    <%= @status %>
 			  </a>
-			</div>
+		  </div>
 	    </div>
 	    <div class="tab-pane" id="tab2">
-	      <p>Howdy, I'm in Section 2.</p>
+	      <div class="btn-group">
+			  <a class="btn <%= @twitter_button_class %>" href="<%= @twitter_path %>">
+			  	<%= @twitter_text %>
+			  </a>
+		  </div>
 	    </div>
 	    <div class="tab-pane" id="tab3">
 	      <p>Howdy, I'm in Section 3.</p>
