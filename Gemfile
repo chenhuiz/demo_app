@@ -5,6 +5,9 @@ gem 'devise'
 gem "authbuttons-rails"
 gem 'oauth'
 gem 'twitter'
+gem 'httparty'
+gem 'json'
+gem 'koala'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

@@ -32,4 +32,14 @@ class TwitterController < ApplicationController
   	twitter_account.update_attributes(:active => false, :oauth_authorize_url => nil)
   	redirect_to(dashboard_path, :notice => 'Twitter account deactivated!')
   end
+
+  def post
+  	twitter_account = TwitterAccount.find_by_user_id(current_user.id)
+  	if !twitter_account.nil? && twitter_account.active
+  		message = twitter_account.post(params[:post]) ? "Successfully tweet!" : "Tweet failed"
+  		redirect_to(dashboard_path, :notice => message)
+  	else
+  		redirect_to(dashboard_path, :notice => "No twitter account detected!")
+  	end
+  end
 end

@@ -26,11 +26,21 @@
   	</div>
   	<div class="span2">
   		<% if !@twitter_not_link %>
- 			<%= image_tag("twitter_64.png") %>
+  			<%= form_tag(twitter_post_path, :method => "post") do %>
+  				<%= label_tag(:post, "Tweet:") %>
+				<%= text_field_tag(:post) %>
+				<%= image_submit_tag("twitter_128.png", :style => "width:auto;border:0;") %>
+  			<% end %>
   		<% end %>
   	</div>
   	<div class="span2">
-  		
+  		<% if !@facebook_not_link %>
+  			<%= form_tag(facebook_post_path, :method => "post") do %>
+  				<%= label_tag(:post, "Post on your wall:") %>
+				<%= text_field_tag(:post) %>
+				<%= image_submit_tag("facebook_128.png", :style => "width:auto;border:0;") %>
+  			<% end %>
+  		<% end %>
   	</div>
   </div>
 
@@ -56,7 +66,11 @@
 		  </div>
 	    </div>
 	    <div class="tab-pane" id="tab3">
-	      <p>Howdy, I'm in Section 3.</p>
+	      <div class="btn-group">
+			  <a class="btn <%= @facebook_button_class %>" href="<%= @facebook_path %>">
+			  	<%= @facebook_text %>
+			  </a>
+		  </div>
 	    </div>
 	  </div>
 	</div>

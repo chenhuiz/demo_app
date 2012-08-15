@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  active: false
+  stream_url: MyText
+  access_token: MyText
+  oauth_authorize_url: MyText
+  expire_at: 2012-08-15 14:04:48
+
+two:
+  user_id: 1
+  active: false
+  stream_url: MyText
+  access_token: MyText
+  oauth_authorize_url: MyText
+  expire_at: 2012-08-15 14:04:48

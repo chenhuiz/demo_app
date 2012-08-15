@@ -8,6 +8,12 @@ DemoApp::Application.routes.draw do
   get "twitter/new"
   get "twitter/callback"
   get "twitter/deactivate"
+  post "twitter/post"
+
+  get "facebook/new"
+  get "facebook/callback"
+  get "facebook/deactivate"
+  post "facebook/post"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

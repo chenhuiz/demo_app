@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120815014718) do
+ActiveRecord::Schema.define(:version => 20120815180524) do
+
+  create_table "facebook_accounts", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "active",              :default => false
+    t.text     "stream_url"
+    t.text     "access_token"
+    t.text     "oauth_authorize_url"
+    t.datetime "expire_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
 
   create_table "twitter_accounts", :force => true do |t|
     t.datetime "created_at",                              :null => false
