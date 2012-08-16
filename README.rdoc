@@ -1,3 +1,16 @@
 A demo_app 
 
 Deployed on Heroku and the host url is http://demo-app-chenhui.herokuapp.com/
+
+This is an app implemented as 3rd party to access your social media account: facebook, twitter and foursquare.
+
+After you sign-up, you can link all your social media accounts in the dashboard.
+
+After that, you can tweet and post to you Facebook wall through my website.
+
+For Foursquare, I will show you the check-in logs during your subscription. Of course, you can unlink your accounts anytime you want.
+
+Reference: 
+Railscast, http://railscasts.com/ 
+Michael Hatle's tutorial, http://ruby.railstutorial.org/
+Ckdake blog, http://ckdake.com/content/2010/posting-to-twitter-from-a-ruby-on-rails-app.html
