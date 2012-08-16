@@ -44,7 +44,7 @@ class FoursquareAccount < ActiveRecord::Base
   	response = HTTParty.get "https://api.foursquare.com/v2/users/self", :query => {
   		:oauth_token => access_token
   	}
-  	response["response"]["user"]["id"].to_i
+  	response["response"]["user"]["id"]
   end
 
 end
