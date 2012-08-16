@@ -7,8 +7,8 @@ class FacebookAccount < ActiveRecord::Base
   # FACEBOOK_CLIENT_SECRET = 'd9b4a63c8c13509fcf0b5d4e699481c1'
 
   # demo-app-chenhui 
-   FACEBOOK_CLIENT_ID = '393338530721521'
-   FACEBOOK_CLIENT_SECRET = '76912c695c06d9e63e64e23f737f9bec'
+  FACEBOOK_CLIENT_ID = '393338530721521'
+  FACEBOOK_CLIENT_SECRET = '76912c695c06d9e63e64e23f737f9bec'
 
   def authorize_url(callback_url = '')
     if self.oauth_authorize_url.blank?

@@ -35,9 +35,9 @@ class FoursquareController < ApplicationController
 
   def push
   	if !params[:secret].nil? && (params[:secret] == FoursquareAccount::FOURSQUARE_PUSH_SECRET)
-  		foursquare_account = FoursquareAccount.find_by_foursquare_id(params[:checkin]["user"]["id"].to_i)
+  		foursquare_account = FoursquareAccount.find_by_foursquare_id(JSON.parse(params[:checkin])["user"]["id"].to_i)
   		if !foursquare_account.nil? && foursquare_account.active
-  			FoursquareCheckin.create(:foursquare_account_id => foursquare_account.id, :venue_id => params[:checkin]["venue"]["id"].to_i, :venue_name => params[:checkin]["venue"]["name"])
+  			FoursquareCheckin.create(:foursquare_account_id => foursquare_account.id, :venue_id => JSON.parse(params[:checkin])["venue"]["id"].to_i, :venue_name => JSON.parse(params[:checkin])["venue"]["name"])
   		end
   	end
   	render :nothing => true
