@@ -40,5 +40,6 @@ class FoursquareController < ApplicationController
   			FoursquareCheckin.create(:foursquare_account_id => foursquare_account.id, :venue_id => params[:checkin]["venue"]["id"].to_i, :venue_name => params[:checkin]["venue"]["name"])
   		end
   	end
+  	render :nothing => true
   end
 end
