@@ -17,7 +17,7 @@ class FacebookController < ApplicationController
   def callback
   	if params[:error_reason] && !params[:error_reason].empty?
       # We have a problem!
-      redirect_to(:root, :notice => "Unable to activate facebook: #{params[:error_reason]}")
+      redirect_to(dashboard_path, :notice => "Unable to activate facebook: #{params[:error_reason]}")
     elsif params[:code] && !params[:code].empty?
       # This is the callback, we have an id and an access code
       facebook_account = FacebookAccount.find(params[:id]) 

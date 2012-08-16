@@ -9,7 +9,7 @@ class TwitterController < ApplicationController
       	twitter_account.save
       	redirect_to(twitter_account.authorize_url(twitter_callback_url))
     elsif !twitter_account.active
-    	redirect_to(twitter_account.authorize_url(twitter_callback_url))
+    	  redirect_to(twitter_account.authorize_url(twitter_callback_url))
     else
       	redirect_to(dashboard_path, :notice => 'Already linked to a Twitter Account')
     end 

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  foursquare_id: 1
+  oauth_authorize_url: MyText
+  access_token: MyText
+
+two:
+  user_id: 1
+  foursquare_id: 1
+  oauth_authorize_url: MyText
+  access_token: MyText

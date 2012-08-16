@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 
   has_one :twitter_account
   has_one :facebook_account
-
+  has_one :foursquare_account
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

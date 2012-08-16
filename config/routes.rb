@@ -15,6 +15,11 @@ DemoApp::Application.routes.draw do
   get "facebook/deactivate"
   post "facebook/post"
 
+  get "foursquare/new"
+  get "foursquare/callback"
+  get "foursquare/deactivate"
+  post "foursquare/push"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

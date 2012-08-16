@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120815180524) do
+ActiveRecord::Schema.define(:version => 20120815210639) do
 
   create_table "facebook_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(:version => 20120815180524) do
     t.datetime "expire_at"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+  end
+
+  create_table "foursquare_accounts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "foursquare_id"
+    t.text     "oauth_authorize_url"
+    t.text     "access_token"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.boolean  "active",              :default => false
   end
 
   create_table "twitter_accounts", :force => true do |t|
