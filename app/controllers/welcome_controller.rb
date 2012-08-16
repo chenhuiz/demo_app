@@ -21,5 +21,8 @@ class WelcomeController < ApplicationController
 		@foursquare_button_class = @foursquare_not_link ? "btn-success" : "btn-danger"
 		@foursquare_text = @foursquare_not_link ? "Link Foursquare" : "Unlink Foursquare"
 		@foursquare_path = @foursquare_not_link ? foursquare_new_path : foursquare_deactivate_path
+		if !@foursquare_not_link
+			@foursquare_checkins = foursquare_account.foursquare_checkins
+		end
 	end
 end

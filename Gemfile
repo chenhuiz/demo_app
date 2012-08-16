@@ -8,6 +8,7 @@ gem 'twitter'
 gem 'httparty'
 gem 'json'
 gem 'koala'
+gem 'foursquare2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

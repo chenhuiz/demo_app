@@ -1,50 +1,40 @@
 <% provide :title, "Dashboard" %>
 <h1>Dashboard</h1>
 <div class="row">
-  <div class="span2">
-	<ul class="nav nav-list">
-	  <li>
-	    <a href=<%= root_path %> >
-	      <i class="icon-home"></i>
-	      Home
-	    </a>
-	  </li>
-	  <li>
-	    <a href=<%= edit_user_registration_path %> >
-	      <i class="icon-cog"></i>
-	      Settings
-	    </a>
-	  </li>
-	</ul>
-  </div>
-
-  <div class="span6">
+  <div class="span9">
   	<h2>Link your social media accounts in the right tab!</h2>
   	<h2>After that you can post messages from this tab!</h2>
-  	<div class="span2">
-
-  	</div>
-  	<div class="span2">
-  		<% if !@twitter_not_link %>
-  			<%= form_tag(twitter_post_path, :method => "post") do %>
-  				<%= label_tag(:post, "Tweet:") %>
-				<%= text_field_tag(:post) %>
-				<%= image_submit_tag("twitter_128.png", :style => "width:auto;border:0;") %>
-  			<% end %>
-  		<% end %>
-  	</div>
-  	<div class="span2">
-  		<% if !@facebook_not_link %>
-  			<%= form_tag(facebook_post_path, :method => "post") do %>
-  				<%= label_tag(:post, "Post on your wall:") %>
-				<%= text_field_tag(:post) %>
-				<%= image_submit_tag("facebook_128.png", :style => "width:auto;border:0;") %>
-  			<% end %>
-  		<% end %>
+  	<div class="row">
+	  	<div class="span3">
+	  		<% if !@foursquare_not_link %>
+	  			<p>Foursquare checkin logs during subscription</p>
+	  			<% @foursquare_checkins.each do |c| %>
+	  				<p><%= c.created_at.to_date %>: <%= c.venue_name %></p>
+	  			<% end %>
+	  		<% end %>
+	  	</div>
+	  	<div class="span3">
+	  		<% if !@twitter_not_link %>
+	  			<%= form_tag(twitter_post_path, :method => "post") do %>
+	  				<%= label_tag(:post, "Tweet:") %>
+					<%= text_field_tag(:post) %>
+					<%= image_submit_tag("twitter_128.png", :style => "width:auto;border:0;") %>
+	  			<% end %>
+	  		<% end %>
+	  	</div>
+	  	<div class="span3">
+	  		<% if !@facebook_not_link %>
+	  			<%= form_tag(facebook_post_path, :method => "post") do %>
+	  				<%= label_tag(:post, "Post on your wall:") %>
+					<%= text_field_tag(:post) %>
+					<%= image_submit_tag("facebook_128.png", :style => "width:auto;border:0;") %>
+	  			<% end %>
+	  		<% end %>
+	  	</div>
   	</div>
   </div>
 
-  <div class="span4">
+  <div class="span3">
   	<div class="tabbable"> <!-- Only required for left/right tabs -->
 	  <ul class="nav nav-tabs">
 	    <li class="active"><a href="#tab1" data-toggle="tab">Foursquare</a></li>
