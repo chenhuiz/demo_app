@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120815210639) do
+ActiveRecord::Schema.define(:version => 20120816010609) do
 
   create_table "facebook_accounts", :force => true do |t|
     t.integer  "user_id"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(:version => 20120815210639) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.boolean  "active",              :default => false
+  end
+
+  create_table "foursquare_checkins", :force => true do |t|
+    t.integer  "foursquare_account_id"
+    t.integer  "venue_id"
+    t.string   "venue_name"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "twitter_accounts", :force => true do |t|

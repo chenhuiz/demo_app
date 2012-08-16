@@ -15,5 +15,11 @@ class WelcomeController < ApplicationController
 		@facebook_button_class = @facebook_not_link ? "btn-success" : "btn-danger"
 		@facebook_text = @facebook_not_link ? "Link Facebook" : "Unlink Facebook"
 		@facebook_path = @facebook_not_link ? facebook_new_path : facebook_deactivate_path
+
+		foursquare_account = FoursquareAccount.find_by_user_id(current_user.id)
+		@foursquare_not_link = foursquare_account.nil? || !foursquare_account.active
+		@foursquare_button_class = @foursquare_not_link ? "btn-success" : "btn-danger"
+		@foursquare_text = @foursquare_not_link ? "Link Foursquare" : "Unlink Foursquare"
+		@foursquare_path = @foursquare_not_link ? foursquare_new_path : foursquare_deactivate_path
 	end
 end

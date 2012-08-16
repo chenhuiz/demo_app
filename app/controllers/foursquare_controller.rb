@@ -28,8 +28,17 @@ class FoursquareController < ApplicationController
   end
 
   def deactivate
+  	foursquare_account = FoursquareAccount.find_by_user_id(current_user.id)
+  	foursquare_account.update_attributes(:active => false, :oauth_authorize_url => nil)
+  	redirect_to(dashboard_path, :notice => 'Foursquare account deactivated!')
   end
 
   def push
+  	if !params[:secret].nil? && (params[:secret] == FoursquareAccount::FOURSQUARE_PUSH_SECRET)
+  		foursquare_account = FoursquareAccount.find_by_foursquare_id(params[:checkin]["user"]["id"].to_i)
+  		if !foursquare_account.nil? && foursquare_account.active
+  			FoursquareCheckin.create(:foursquare_account_id => foursquare_account.id, :venue_id => params[:checkin]["venue"]["id"].to_i, :venue_name => params[:checkin]["venue"]["name"])
+  		end
+  	end
   end
 end
