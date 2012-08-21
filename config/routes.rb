@@ -20,6 +20,9 @@ DemoApp::Application.routes.draw do
   get "foursquare/deactivate"
   post "foursquare/push"
 
+  get "upload/index"
+  post "upload/uploadFile"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

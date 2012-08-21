@@ -9,6 +9,9 @@ gem 'httparty'
 gem 'json'
 gem 'koala'
 gem 'foursquare2'
+
+gem 'carrierwave'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
