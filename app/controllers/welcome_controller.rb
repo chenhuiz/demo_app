@@ -25,4 +25,7 @@ class WelcomeController < ApplicationController
 			@foursquare_checkins = foursquare_account.foursquare_checkins
 		end
 	end
+
+	def draw
+	end
 end

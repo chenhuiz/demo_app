@@ -4,6 +4,7 @@ DemoApp::Application.routes.draw do
 
   root :to => 'welcome#index'
   match 'dashboard' => 'welcome#dashboard'
+  get 'welcome/draw'
 
   get "twitter/new"
   get "twitter/callback"
