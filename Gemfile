@@ -9,6 +9,8 @@ gem 'httparty'
 gem 'json'
 gem 'koala'
 gem 'foursquare2'
+gem 'forem', :git => "git://github.com/radar/forem.git"
+gem 'will_paginate', '3.0.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
