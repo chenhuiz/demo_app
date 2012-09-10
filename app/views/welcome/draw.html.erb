@@ -1,121 +1,217 @@
 <style type="text/css">
 	#selectable_source .ui-selecting { background: #FECA40; }
-	#selectable_source .ui-selected { background: #F39814; color: white; }
+	#selectable_source .ui-selected.selectedfilter { background: #F39814; color: white; }
 	#selectable_source { list-style-type: none; margin: 0; padding: 0; width: 100%; }
 	#selectable_source li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; border: 2px;}
 
 	#selectable_translation .ui-selecting { background: #FECA40; }
-	#selectable_translation .ui-selected { background: #F39814; color: white; }
+	#selectable_translation .ui-selected.selectedfilter { background: #F39814; color: white; }
 	#selectable_translation { list-style-type: none; margin: 0; padding: 0; width: 100%; }
 	#selectable_translation li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; border: 2px;}
 
+	#menu {
+	    display: none;
+	    position: absolute;
+	    padding: 10px;
+	    background-color: #ddd;
+	    border: 1px solid #000;
+	}
+
 </style>
 
-<script>
+<script type="text/javascript">
 	$(function() {
-		$( "#selectable_source" ).selectable();
-		$( "#selectable_translation" ).selectable();
+		$( "#selectable_source" ).selectable({
+			selected: function (event, ui) {
+		        if ($(ui.selected).hasClass('selectedfilter')) {
+		            $(ui.selected).removeClass('selectedfilter');
+		            $(ui.selected).removeClass('ui-selected');
+		            // do unselected stuff
+		        } else {            
+		            $(ui.selected).addClass('selectedfilter');
+		            // do selected stuff
+		        }
+		    },
+		    unselected: function (event, ui) {
+		        $(ui.unselected).removeClass('selectedfilter');
+		    }
+		});
+		$( "#selectable_translation" ).selectable({
+			selected: function (event, ui) {
+		        if ($(ui.selected).hasClass('selectedfilter')) {
+		            $(ui.selected).removeClass('selectedfilter');
+		            $(ui.selected).removeClass('ui-selected');
+		            // do unselected stuff
+		        } else {            
+		            $(ui.selected).addClass('selectedfilter');
+		            // do selected stuff
+		        }
+		    },
+		    unselected: function (event, ui) {
+		        $(ui.unselected).removeClass('selectedfilter');
+		    }
+		});
+
+		$(".customerRow").contextMenu({ menu: 'menu' }, 
+        function(action, el, pos) { 
+        	var $el = el;
+        	var oldTag = $el[0].lastChild;
+        	var newTag = document.createElement("SPAN");
+        	var text = document.createTextNode(action);
+        	newTag.appendChild(text);
+        	$el[0].removeChild(oldTag);
+        	$el[0].appendChild(newTag);
+        	// console.log(action);
+        	// console.log(el);
+        	// console.log(pos);
+        });
 	});
+
+	// Keys "enum"
+	var KEY = {
+	    BACKSPACE: 8,
+	    TAB: 9,
+	    ENTER: 13,
+	    ESCAPE: 27,
+	    SPACE: 32,
+	    PAGE_UP: 33,
+	    PAGE_DOWN: 34,
+	    END: 35,
+	    HOME: 36 ,
+	    LEFT: 37,
+	    UP: 38,
+	    RIGHT: 39,
+	    DOWN: 40,
+	    NUMPAD_ENTER: 108,
+	    COMMA: 188,
+	    C_SMALL: 99,
+	    C_BIG: 67,
+	    I_SMALL: 105,
+	    I_BIG: 73,
+	};
+
+	var MOUSE = {
+		LEFT: 1,
+		MIDDLE: 2,
+		RIGHT: 3,
+	};
 </script>
 
 <table>
 	<tr>
 		<td width="200px">
 			<ol id="selectable_source">
-				<li class="ui-widget-content">Item 1</li>
-				<li class="ui-widget-content">Item 2</li>
-				<li class="ui-widget-content">Item 3</li>
-				<li class="ui-widget-content">Item 4</li>
-				<li class="ui-widget-content">Item 5</li>
-				<li class="ui-widget-content">Item 6</li>
-				<li class="ui-widget-content">Item 7</li>
+				<li class="ui-widget-content customerRow"><span>Item 1</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 2</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 3</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 4</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 5</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 6</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 7</span><span></span></li>
 			</ol>
 		</td>
-		<td id="paper" width="200px"></td>
+		<td id="canvas" width="200px"></td>
 		<td width="200px">
 			<ol id="selectable_translation">
-				<li class="ui-widget-content">Item 1</li>
-				<li class="ui-widget-content">Item 2</li>
-				<li class="ui-widget-content">Item 3</li>
-				<li class="ui-widget-content">Item 4</li>
-				<li class="ui-widget-content">Item 5</li>
-				<li class="ui-widget-content">Item 6</li>
-				<li class="ui-widget-content">Item 7</li>
+				<li class="ui-widget-content customerRow"><span>Item 1</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 2</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 3</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 4</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 5</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 6</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 7</span><span></span></li>
 			</ol>
 		</td>
 	</tr>
 </table>
 
+<ul id="menu" class="contextMenu">
+  	<li><a href="#MET">Meta Word</a></li>        
+    <li><a href="#TOK">Tokenization Error</a></li>   
+    <li><a href="#TYP">Typo</a></li>                 
+    <li><a href="#">Delete Tag</a></li>
+</ul>
+
 <script type="text/javascript">
-	var paper = Raphael("paper");
-	
-	// function svgDrawLine(eTarget, eSource) {
-
-	    
-
-	//         var $source = eSource;
-	//         var $target = eTarget;
-
-	//         // origin -> ending ... from left to right
-	//         // 10 + 10 (padding left + padding right) + 2 + 2 (border left + border right)
-	//         var originX = $source.offset().left + $source.width() + 20 + 4;
-	//         var originY = $source.offset().top + (($source.height() + 20 + 4) / 2);
-
-	//         var endingX = $target.offset().left;
-	//         var endingY = $target.offset().top + (($target.height() + 20 + 4) / 2);
-
-	//         var space = 20;
-	//         var color = 'red';
-
-	//         // draw lines
-	//         // http://raphaeljs.com/reference.html#path			
-	//         var a = "M" + originX + " " + originY + " L" + (originX + space) + " " + originY; // beginning
-	//         var b = "M" + (originX + space) + " " + originY + " L" + (endingX - space) + " " + endingY; // diagonal line
-	//         var c = "M" + (endingX - space) + " " + endingY + " L" + endingX + " " + endingY; // ending
-	//         var all = a + " " + b + " " + c;
-
-	//         /*
-	//         // log (to show in FF (with FireBug), Chrome and Safari)			
-	//         console.log("New Line ----------------------------");
-	//         console.log("originX: " + originX + " | originY: " + originY + " | endingX: " + endingX + " | endingY: " + endingY + " | space: " + space + " | color: " + color );				
-	//         console.log(all); 
-	//         */
-
-	//         // write line
-	//         myLines[myLines.length] = svg
-	// 										.path(all)
-	// 										.attr({
-	// 										    "stroke": color,
-	// 										    "stroke-width": 2,
-	// 										    "stroke-dasharray": "--."
-	// 										});
-
-
-	// }
-
-	$('#selectable_translation').bind("selectableselected", function(event, ui) {
-		var sources = $('#selectable_source .ui-selected');
-		var target = $(ui.selected);
-		var canvas = $("#paper");
-		$.each(sources, function(index,value){
-			var source = $(value);
-			var originX = 0;
-			var originY = source.offset().top - canvas.offset().top + source.height();
-			var endingX = canvas.width();
-			var endingY = target.offset().top - canvas.offset().top + source.height();
-			console.log(originX);
-			console.log(originY);
-			console.log(endingX);
-			console.log(endingY);
-			var line = "M" + originX + " " + originY + " L" + endingX + " " + endingY; 
-			paper.path(line).attr({
-				"stroke": 'red',
-				"stroke-width": 2,
-				"stroke-dasharray": "--."
+	var canvas = Raphael("canvas");
+	var $canvas = $("#canvas");
+	var $li;
+	function drawLine(sources, targets, color) {
+		if (sources != [] && targets != []){
+			$.each(sources, function(s_i,s_val){
+				var source = $(s_val);
+				$.each(targets, function(t_i,t_val){
+					var target = $(t_val);
+					var originX = 0;
+					var originY = source.offset().top - $canvas.offset().top + source.height();
+					var endingX = $canvas.width();
+					var endingY = target.offset().top - $canvas.offset().top + target.height();
+					console.log(originX);
+					console.log(originY);
+					console.log(endingX);
+					console.log(endingY);
+					line = "M" + originX + " " + originY + " L" + endingX + " " + endingY; 
+					canvas.path(line).attr({
+						"stroke": color,
+						"stroke-width": 2,
+						"stroke-dasharray": "--."
+					});
+				})	
 			});
-		});
-		
-		console.log($(ui.selected));
+		}
+	}
 
-	})
+	$(window).keydown(function(event) {
+		var sources = $('#selectable_source .ui-selected');
+		var targets = $('#selectable_translation .ui-selected');
+		switch(event.keyCode) {
+			case KEY.SPACE:
+			case KEY.C_SMALL:
+			case KEY.C_BIG:
+				drawLine(sources, targets, 'green');
+				break;
+			case KEY.I_SMALL:
+			case KEY.I_BIG:
+				drawLine(sources, targets, 'orange');
+				break;
+		}
+	});
+
+	// $("li").bind('contextmenu',function(event){
+	// 	$li = $(event.target);
+	// 	$('#menu').css({
+	//         top: event.pageY+'px',
+	//         left: event.pageX+'px'
+	//     }).show();
+	// 	return false;
+	// });
+
+	// $('#menu').click(function() {
+ //        $('#menu').hide();
+ //    });
+ //    $(document).click(function() {
+ //        $('#menu').hide();
+ //    });
+
+ //    $("a").bind('click', function(event){
+	// 	console.log(this);
+	// });
+
+	// $(function(){
+	//     $(document).mousedown(function(event){
+	//     	$('#menu').hide();
+	//     });
+	// });
+
+	
+
+	// $("li").mousedown(function(event){
+	// 	switch(event.which) {
+	//         case MOUSE.RIGHT:
+	//             console.log('Right mouse button pressed');
+	//             return false;
+	//             break;        
+	// 	}
+	// });
+
 </script>
