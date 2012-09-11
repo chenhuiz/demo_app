@@ -86,6 +86,8 @@
 	    COMMA: 188,
 	    C_SMALL: 99,
 	    C_BIG: 67,
+	    D_SMALL: 100,
+	    D_BIG: 68,
 	    I_SMALL: 105,
 	    I_BIG: 73,
 	};
@@ -136,6 +138,12 @@
 	var canvas = Raphael("canvas");
 	var $canvas = $("#canvas");
 	var $li;
+	var sourceNum = $("#selectable_source").children().length;
+	var translationNum = $("#selectable_translation").children().length;
+	var lines = new Array(sourceNum); 
+	for (var i = lines.length - 1; i >= 0; --i) {
+		lines[i] = new Array(translationNum); // translation items number
+	}; 
 	function drawLine(sources, targets, color) {
 		if (sources != [] && targets != []){
 			$.each(sources, function(s_i,s_val){
@@ -146,16 +154,28 @@
 					var originY = source.offset().top - $canvas.offset().top + source.height();
 					var endingX = $canvas.width();
 					var endingY = target.offset().top - $canvas.offset().top + target.height();
-					console.log(originX);
-					console.log(originY);
-					console.log(endingX);
-					console.log(endingY);
-					line = "M" + originX + " " + originY + " L" + endingX + " " + endingY; 
-					canvas.path(line).attr({
+					var startIndex = source.parent().children().index(source);
+					var endIndex = target.parent().children().index(target);
+					var line = "M" + originX + " " + originY + " L" + endingX + " " + endingY; 
+					lines[startIndex][endIndex] = canvas.path(line).attr({
 						"stroke": color,
 						"stroke-width": 2,
 						"stroke-dasharray": "--."
 					});
+				})	
+			});
+		}
+	}
+
+	function removeLine(sources, targets) {
+		if (sources != [] && targets != []){
+			$.each(sources, function(s_i,s_val){
+				var source = $(s_val);
+				$.each(targets, function(t_i,t_val){
+					var target = $(t_val);
+					var startIndex = source.parent().children().index(source);
+					var endIndex = target.parent().children().index(target);
+					lines[startIndex][endIndex].remove();
 				})	
 			});
 		}
@@ -169,6 +189,10 @@
 			case KEY.C_SMALL:
 			case KEY.C_BIG:
 				drawLine(sources, targets, 'green');
+				break;
+			case KEY.D_SMALL:
+			case KEY.D_BIG:
+				removeLine(sources, targets);
 				break;
 			case KEY.I_SMALL:
 			case KEY.I_BIG:
