@@ -1,13 +1,24 @@
 <style type="text/css">
-	#selectable_source .ui-selecting { background: #FECA40; }
-	#selectable_source .ui-selected.selectedfilter { background: #F39814; color: white; }
+	#selectable_source .ui-selecting { background: #89C0E6; }
+	#selectable_source .ui-selected.selectedfilter { background: #5BAFE7; color: white; }
 	#selectable_source { list-style-type: none; margin: 0; padding: 0; width: 100%; }
 	#selectable_source li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; border: 2px;}
+	#selectable_source .correct { background: #5DD3A4; color: black;}
+	#selectable_source .wrong { background: #F39814; color: black;}
 
-	#selectable_translation .ui-selecting { background: #FECA40; }
-	#selectable_translation .ui-selected.selectedfilter { background: #F39814; color: white; }
+	#selectable_translation .ui-selecting { background: #89C0E6; }
+	#selectable_translation .ui-selected.selectedfilter { background: #5BAFE7; color: white; }
 	#selectable_translation { list-style-type: none; margin: 0; padding: 0; width: 100%; }
 	#selectable_translation li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; border: 2px;}
+	#selectable_translation .correct { background: #5DD3A4; color: black;}
+	#selectable_translation .wrong { background: #F39814; color: black;}
+
+	.source {
+		display: none;
+	}
+	.target {
+		display: none;
+	}
 
 	#menu {
 	    display: none;
@@ -29,6 +40,20 @@
 		            // do unselected stuff
 		        } else {            
 		            $(ui.selected).addClass('selectedfilter');
+		            var sourceText = $($(ui.selected).children()[1]).text();
+		            var targetText = $($(ui.selected).children()[2]).text();
+		            if( sourceText != '' && targetText != '') {
+		            	var sourceTokens = sourceText.split(',');
+		            	var targetTokens = targetText.split(',');
+		            	for (var i = 0; i < sourceTokens.length; ++i) {
+		            		$($('#selectable_source').children()[parseInt(sourceTokens[i])]).addClass('ui-selected').addClass('selectedfilter');	
+		            	}
+		            	for (var i = 0; i < targetTokens.length; ++i) {
+		            		$($('#selectable_translation').children()[parseInt(targetTokens[i])]).addClass('ui-selected').addClass('selectedfilter');
+		            	};            		
+		            }
+		            console.log(sourceText);
+		            console.log(targetText);
 		            // do selected stuff
 		        }
 		    },
@@ -52,6 +77,7 @@
 		    }
 		});
 
+		// right click and add tag to each word
 		$(".customerRow").contextMenu({ menu: 'menu' }, 
         function(action, el, pos) { 
         	var $el = el;
@@ -103,25 +129,25 @@
 	<tr>
 		<td width="200px">
 			<ol id="selectable_source">
-				<li class="ui-widget-content customerRow"><span>Item 1</span><span></span></li>
-				<li class="ui-widget-content customerRow"><span>Item 2</span><span></span></li>
-				<li class="ui-widget-content customerRow"><span>Item 3</span><span></span></li>
-				<li class="ui-widget-content customerRow"><span>Item 4</span><span></span></li>
-				<li class="ui-widget-content customerRow"><span>Item 5</span><span></span></li>
-				<li class="ui-widget-content customerRow"><span>Item 6</span><span></span></li>
-				<li class="ui-widget-content customerRow"><span>Item 7</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 1</span><span class="source"></span><span class="target"></span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 2</span><span class="source"></span><span class="target"></span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 3</span><span class="source"></span><span class="target"></span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 4</span><span class="source"></span><span class="target"></span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 5</span><span class="source"></span><span class="target"></span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 6</span><span class="source"></span><span class="target"></span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 7</span><span class="source"></span><span class="target"></span><span></span></li>
 			</ol>
 		</td>
 		<td id="canvas" width="200px"></td>
 		<td width="200px">
 			<ol id="selectable_translation">
-				<li class="ui-widget-content customerRow"><span>Item 1</span><span></span></li>
-				<li class="ui-widget-content customerRow"><span>Item 2</span><span></span></li>
-				<li class="ui-widget-content customerRow"><span>Item 3</span><span></span></li>
-				<li class="ui-widget-content customerRow"><span>Item 4</span><span></span></li>
-				<li class="ui-widget-content customerRow"><span>Item 5</span><span></span></li>
-				<li class="ui-widget-content customerRow"><span>Item 6</span><span></span></li>
-				<li class="ui-widget-content customerRow"><span>Item 7</span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 1</span><span class="source"></span><span class="target"></span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 2</span><span class="source"></span><span class="target"></span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 3</span><span class="source"></span><span class="target"></span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 4</span><span class="source"></span><span class="target"></span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 5</span><span class="source"></span><span class="target"></span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 6</span><span class="source"></span><span class="target"></span><span></span></li>
+				<li class="ui-widget-content customerRow"><span>Item 7</span><span class="source"></span><span class="target"></span><span></span></li>
 			</ol>
 		</td>
 	</tr>
@@ -144,38 +170,104 @@
 	for (var i = lines.length - 1; i >= 0; --i) {
 		lines[i] = new Array(translationNum); // translation items number
 	}; 
-	function drawLine(sources, targets, color) {
+	function drawLines(sources, targets, color) {
 		if (sources != [] && targets != []){
+			var sourceTokens = new Array();
+			var targetTokens = new Array();
+			// get sources and targets index
 			$.each(sources, function(s_i,s_val){
-				var source = $(s_val);
+				var $source = $(s_val);
+				sourceTokens.push($source.parent().children().index($source));
+			});
+			$.each(targets, function(t_i,t_val){
+				var $target = $(t_val);
+				targetTokens.push($target.parent().children().index($target));
+			});
+
+			// add content for source and target span
+			$.each(sources,function(s_i,s_val){
+				var $source = $(s_val);
+				$($source.children()[1]).text(sourceTokens.join());
+				$($source.children()[2]).text(targetTokens.join());
+			})
+			$.each(targets,function(t_i,t_val){
+				var $target = $(t_val);
+				$($target.children()[1]).text(sourceTokens.join());
+				$($target.children()[2]).text(targetTokens.join());
+			})		    
+
+			// draw lines
+			$.each(sources, function(s_i,s_val){
+				var $source = $(s_val);
+				var startIndex = $source.parent().children().index($source);
 				$.each(targets, function(t_i,t_val){
-					var target = $(t_val);
-					var originX = 0;
-					var originY = source.offset().top - $canvas.offset().top + source.height();
-					var endingX = $canvas.width();
-					var endingY = target.offset().top - $canvas.offset().top + target.height();
-					var startIndex = source.parent().children().index(source);
-					var endIndex = target.parent().children().index(target);
-					var line = "M" + originX + " " + originY + " L" + endingX + " " + endingY; 
-					lines[startIndex][endIndex] = canvas.path(line).attr({
-						"stroke": color,
-						"stroke-width": 2,
-						"stroke-dasharray": "--."
-					});
+					var $target = $(t_val);					
+					var endIndex = $target.parent().children().index($target);
+					if (lines[startIndex][endIndex] == undefined || lines[startIndex][endIndex].attrs == null) {
+						drawLine($source, $target, startIndex, endIndex, sourceTokens, targetTokens, color);
+					} else {
+						lines[startIndex][endIndex].remove();
+						drawLine($source, $target, startIndex, endIndex, sourceTokens, targetTokens, color);
+					};
 				})	
 			});
 		}
 	}
 
-	function removeLine(sources, targets) {
+	function drawLine(source, target, startIndex, endIndex, sourceTokens, targetTokens, color){
+		var originX = 0;
+		var originY = source.offset().top - $canvas.offset().top + source.height();
+		var endingX = $canvas.width();
+		var endingY = target.offset().top - $canvas.offset().top + target.height();
+		var line = "M" + originX + " " + originY + " L" + endingX + " " + endingY; 
+		lines[startIndex][endIndex] = canvas.path(line).attr({
+			"stroke": color,
+			"stroke-width": 2,
+			"stroke-dasharray": "--."
+		});	
+		if ('green' == color){
+			source.addClass('correct');
+			target.addClass('correct');
+		}		
+		if ('orange' == color) {
+			source.addClass('wrong');
+			target.addClass('wrong');
+		};
+		source.removeClass('selectedfilter');
+	    source.removeClass('ui-selected');
+		target.removeClass('selectedfilter');
+	    target.removeClass('ui-selected');
+	}
+
+	function removeLines(sources, targets) {
 		if (sources != [] && targets != []){
+
+			// remove contents from source and target span
+			$.each(sources,function(s_i,s_val){
+				var $source = $(s_val);
+				$($source.children()[1]).text('');
+				$($source.children()[2]).text('');
+			})
+			$.each(targets,function(t_i,t_val){
+				var $target = $(t_val);
+				$($target.children()[1]).text('');
+				$($target.children()[2]).text('');
+			})	
+
+			// remove lines
 			$.each(sources, function(s_i,s_val){
 				var source = $(s_val);
 				$.each(targets, function(t_i,t_val){
 					var target = $(t_val);
 					var startIndex = source.parent().children().index(source);
 					var endIndex = target.parent().children().index(target);
-					lines[startIndex][endIndex].remove();
+					if (lines[startIndex][endIndex] != undefined) {
+						lines[startIndex][endIndex].remove();
+					};
+					source.removeClass('selectedfilter').removeClass('ui-selected');
+				    source.removeClass('correct').removeClass('wrong');
+					target.removeClass('selectedfilter').removeClass('ui-selected');
+				    target.removeClass('correct').removeClass('wrong');
 				})	
 			});
 		}
@@ -188,15 +280,15 @@
 			case KEY.SPACE:
 			case KEY.C_SMALL:
 			case KEY.C_BIG:
-				drawLine(sources, targets, 'green');
+				drawLines(sources, targets, 'green');
 				break;
 			case KEY.D_SMALL:
 			case KEY.D_BIG:
-				removeLine(sources, targets);
+				removeLines(sources, targets);
 				break;
 			case KEY.I_SMALL:
 			case KEY.I_BIG:
-				drawLine(sources, targets, 'orange');
+				drawLines(sources, targets, 'orange');
 				break;
 		}
 	});
